@@ -1,26 +1,29 @@
-import logo from './logo.svg';
+import React, {useState} from "react";
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import PrivateRoute from './PrivateRoute';
 import './App.css';
-import Test from './components/TestComponent';
+import { AuthContext } from "./context/auth";
+import PartsForGames from './pages/PartsForGames';
+
 
 function App() {
+  const existingTokens = JSON.parse(localStorage.getItem("tokens"));
+  const [authTokens, setAuthTokens] = useState(existingTokens);
+  
+  const setTokens = (data) => {
+    localStorage.setItem("tokens", JSON.stringify(data));
+    setAuthTokens(data);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Test />
-    </div>
+    <AuthContext.Provider value={false}>
+      <Router>
+        <div>
+          <Route exact path="/" component={} />
+          <PrivateRoute path="/Parts4Games" component={PartsForGames} />
+        </div>
+      </Router>
+    </AuthContext.Provider>
   );
 }
 

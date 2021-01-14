@@ -1,7 +1,20 @@
+import react from 'react';
+import { Button } from "react-bootstrap";
+import { useAuth } from "../context/auth";
 
+function PartsForGames(props){
+    
+    const { setAuthTokens } = useAuth();
 
-function PartsForGames(){
+    function logOut() {
+        setAuthTokens();
+    }
     return(
-        <div>PartsForGames</div>
+        <div>
+            <Button onClick={logOut}>Log out</Button>
+        </div>
     );
+
 }
+
+export default PartsForGames;
