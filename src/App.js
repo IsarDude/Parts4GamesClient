@@ -16,7 +16,7 @@ function App() {
   }
 
   return (
-    <AuthContext.Provider value={false}>
+    <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
       <Router>
         <div>
           <Route exact path="/" component={} />
