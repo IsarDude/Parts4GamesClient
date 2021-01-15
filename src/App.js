@@ -2,13 +2,12 @@ import React, {useState} from "react";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import PrivateRoute from './PrivateRoute';
 import './App.css';
-<<<<<<< HEAD
-import Test from './components/TestComponent';
+
 import SignIn from "./pages/SignIn";
-=======
+
 import { AuthContext } from "./context/auth";
 import PartsForGames from './pages/PartsForGames';
->>>>>>> c475ec921a426c1e68275f9101baf342527c1fed
+
 
 
 function App() {
@@ -21,19 +20,14 @@ function App() {
   }
 
   return (
-<<<<<<< HEAD
-
-      <SignIn />
-=======
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
       <Router>
         <div>
-          <Route exact path="/" component={} />
+          <Route exact path="/" component={SignIn} />
           <PrivateRoute path="/Parts4Games" component={PartsForGames} />
         </div>
       </Router>
     </AuthContext.Provider>
->>>>>>> c475ec921a426c1e68275f9101baf342527c1fed
   );
 }
 
