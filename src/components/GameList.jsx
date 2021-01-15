@@ -1,6 +1,6 @@
 import react, {useState} from 'react';
 import axios from 'axios';
-import { ListGroup, InputGroup, FormControl, Button, ListGroupItem } from 'react-bootstrap';
+import { ListGroup, InputGroup, FormControl, Button, ListGroupItem, Card } from 'react-bootstrap';
 
 
 
@@ -67,6 +67,12 @@ function GameList(props){
                     )
                 })}
             </ListGroup>
+            <Card>
+                <Card.Body style={{width:'18rem'}}>
+                    <Card.Title>Anforgderungen</Card.Title>
+                    {gameInfoDetail}
+                </Card.Body>
+            </Card>
             
         </div>
     )
