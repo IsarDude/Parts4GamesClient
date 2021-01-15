@@ -1,10 +1,10 @@
 import react from 'react';
 import { Button } from "react-bootstrap";
-import { useAuth } from "../context/auth";
+import { UseAuth } from "../context/auth";
 
 function PartsForGames(props){
     
-    const { setAuthTokens } = useAuth();
+    const { setAuthTokens } = UseAuth();
 
     function logOut() {
         setAuthTokens();

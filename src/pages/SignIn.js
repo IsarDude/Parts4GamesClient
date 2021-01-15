@@ -1,8 +1,39 @@
 import '../style/SignIn.css';
+import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
+import axios from 'axios';
 import { UseAuth } from '../context/auth';
 
 
 function SignIn() {
+
+    const [isLoggedIn, setLoggedIn] = useState(false);
+    const [isError, setIsError] = useState(false);
+    const { setAuthTokens } = useAuth();
+
+    function postLogin() {
+      axios.post("https://accounts.google.com/o/oauth2/v2/auth?",null, {params:{
+        userName,
+        password,
+        client_id: '1012272884295-oj9v46cl35rssdargirp23k7a7n75gvg.apps.googleusercontent.com',
+        client_secret: 'VkA-vIC38t3BQN9NMVRWQba5'
+      }
+      }).then(result => {
+        if (result.status === 200) {
+          setAuthTokens(result.data);
+          setLoggedIn(true);
+        } else {
+          setIsError(true);
+        }
+      }).catch(e => {
+        setIsError(true);
+      });
+    }
+  
+    if (isLoggedIn) {
+      return <Redirect to="/Parts4Games" />;
+    }
+
     return (
       <div>
         <header>
@@ -27,7 +58,7 @@ function Test(){
             <h1 className="h5 mb-5 font-weight-normal" style={{textAlign: 'center'}}> Willkommen zu PARTS4GAMES</h1>
             <h2 className="h5 mb-5 font-weight-normal" style={{textAlign: 'center'}}> Du musst dich erst mit deinen Google-Account anmelden</h2>
             <div class="social-login" style={{textAlign:'center'}}>
-                <button class="btn google-btn social-btn" type="button" href=""><span><i className="fab fa-google-plus-g"></i> Anmelden mit Google</span> </button>
+                <button onClick={postLogin} class="btn google-btn social-btn" type="button" href=""><span><i className="fab fa-google-plus-g"></i> Anmelden mit Google</span> </button>
             </div>
         </form>
         <form action="/signup/" className="form-signup">
