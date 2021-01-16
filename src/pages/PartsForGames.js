@@ -1,17 +1,19 @@
 import react from 'react';
 import { Button } from "react-bootstrap";
-import { useAuth } from "../context/auth";
+import { UseAuth } from "../context/auth";
+import GameList from "../components/GameList";
 
 function PartsForGames(props){
     
-    const { setAuthTokens } = useAuth();
+    const { setAuthTokens } = UseAuth();
 
     function logOut() {
         setAuthTokens();
     }
     return(
         <div>
-            <Button onClick={logOut}>Log out</Button>
+            <GameList />
+           
         </div>
     );
 

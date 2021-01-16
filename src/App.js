@@ -1,12 +1,15 @@
 import React, {useState} from "react";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
-import PrivateRoute from './PrivateRoute';
+import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 
 import SignIn from "./pages/SignIn";
 
 import { AuthContext } from "./context/auth";
 import PartsForGames from './pages/PartsForGames';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 
 
 
@@ -28,6 +31,8 @@ function App() {
         </div>
       </Router>
     </AuthContext.Provider>
+    
+
   );
 }
 
