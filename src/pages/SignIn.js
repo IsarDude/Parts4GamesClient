@@ -26,8 +26,7 @@ function SignIn() {
         var res = response.profileObj;
         console.log("ResData = "+res.data);
         SignData(response);
-        setAuthTokens(res.data);
-        setLoggedIn(true);
+       
       }
 
       function SignData(res){
@@ -37,6 +36,8 @@ function SignIn() {
           token: res.googleId,
           ProviderId: 'Google'
         } 
+        setAuthTokens(googleresponse.token);
+        setLoggedIn(true)
         console.log("GoogleResponse = "+ googleresponse)
       }
 
