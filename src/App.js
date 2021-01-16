@@ -26,7 +26,7 @@ function App() {
     <AuthContext.Provider value={{ authTokens, setAuthTokens: setTokens }}>
       <Router>
         <div>
-          <Route exact path="/" component={SignIn} />
+          <Route exact path="/" component={PartsForGames} />
           <PrivateRoute path="/Parts4Games" component={PartsForGames} />
         </div>
       </Router>

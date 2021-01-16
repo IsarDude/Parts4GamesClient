@@ -72,7 +72,7 @@ function GameList(props){
                 <ListGroup.Item><h5>Spiele</h5></ListGroup.Item>
                 {gameList.map((game,j) => {
                     return(
-                        <ListGroup.Item action data-key={j} onClick={selectGame}>game.name</ListGroup.Item>
+                        <ListGroup.Item action data-key={j} onClick={selectGame}>{game.name}</ListGroup.Item>
                     )
                 })}
             </ListGroup>
