@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import PrivateRoute from './components/PrivateRoute';
 import './App.css';
 
@@ -14,6 +14,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
+  console.log(localStorage);
   const existingTokens = JSON.parse(localStorage.getItem("tokens"));
   const [authTokens, setAuthTokens] = useState(existingTokens);
   
