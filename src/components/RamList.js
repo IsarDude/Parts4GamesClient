@@ -1,4 +1,4 @@
-import react, {useState} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import { ListGroup, InputGroup, FormControl, Button, ListGroupItem, Card, Form, Col, Row, Input } from 'react-bootstrap';
 
@@ -18,7 +18,7 @@ function RamList(props){
 
     
     function getRamList(){
-        var url = 'localhos:8080/ramList'; 
+        var url = 'localhos:8080/Parts4Games/ramList'; 
         axios.get(url, {params: {keyword, budget}})
             .then(res => {
                 setRamList(res.data);
@@ -79,7 +79,9 @@ function RamList(props){
                     <Card.Header>Details</Card.Header>
                     <ListGroup variant="flush">
                        { Object.keys(selectedRam).map(key => {
+                           return(
                            <ListGroup.Item><h5>{key}:</h5> {selectRam[key]} </ListGroup.Item>
+                           )
                        })    
                        }
     
@@ -87,6 +89,7 @@ function RamList(props){
                     
                 </Card.Body>
             </Card>
+            <Button onClick={() => props.addRam(selectedRam)}>Add to Config</Button>
             </div>
         </div>
         </div>

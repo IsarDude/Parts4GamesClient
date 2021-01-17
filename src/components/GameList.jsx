@@ -1,4 +1,4 @@
-import react, {useState} from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
 import { ListGroup, InputGroup, FormControl, Button, ListGroupItem, Card, Form } from 'react-bootstrap';
 
@@ -23,11 +23,11 @@ function GameList(props){
         
         
         
-          var urlRec= 'localhos:8080/gameInfo/'+ game.gameId;
+          var urlRec= 'localhost:8080/Parts4Games/gameInfo/'+ game.gameId;
        
-          var urlMin= 'localhos:8080/gameInfo/'+ game.gameId+'/min';
+          var urlMin= 'localhost:8080/Parts4Games/gameInfo/'+ game.gameId+'/min';
         
-        axios.get(urlRec)
+        axios.get(urlRec) 
             .then(res => {
                 const gameInfo = res.data;
                 setGameInfoDetailRec(gameInfo);
@@ -41,8 +41,8 @@ function GameList(props){
     }
 
     function getGameList(){
-        var url = 'localhos:8080/gameList/'+ gameName; 
-        axios.get(url)
+        var url = 'http://localhost:8080/Parts4Games/gameList/'+ gameName; 
+        axios.get(url,{ crossDomain: false })
             .then(res => {
                 const gameList = res.data;
                 setGameList(gameList);
