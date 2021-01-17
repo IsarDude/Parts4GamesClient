@@ -9,7 +9,7 @@ function RamList(props){
     const[ramList, setRamList] = useState([]);
     const[keyword, setKeyword] = useState();
     const[selectedRam, setSelectedRam]= useState({});
-    const[budget, setBudget] = useState();
+    const[ramBudget, setRamBudget] = useState();
 
 
     function selectRam(e) {
@@ -18,8 +18,8 @@ function RamList(props){
 
     
     function getRamList(){
-        var url = 'localhos:8080/Parts4Games/ramList'; 
-        axios.get(url, {params: {keyword, budget}})
+        var url = 'http://localhost:8080/Parts4Games/ramList'; 
+        axios.get(url, {params: {ramCapacity: keyword, budget: ramBudget }})
             .then(res => {
                 setRamList(res.data);
             }
@@ -55,10 +55,10 @@ function RamList(props){
                 {ramList.map((ram,j) => {
                     return(
                         <ListGroup.Item action data-key={j} onClick={selectRam}>
-                        <Row>
-                            <Col>{ram.brand}</Col>
-                            <Col>{ram.model}</Col>
-                            <Col>{ram.totalcapacity}</Col>
+                        <Row data-key={j}>
+                            <Col data-key={j}>{ram.brand}</Col>
+                            <Col data-key={j}>{ram.model}</Col>
+                            <Col data-key={j}>{ram.totalcapacity}</Col>
                         </Row>
                                
                         </ListGroup.Item>
@@ -70,8 +70,8 @@ function RamList(props){
             <Form.Control
                 type= "number"
                 placeholder="Budget"
-                value = {budget}
-                onChange = {(e) => setBudget(e.target.value)}
+                value = {ramBudget}
+                onChange = {(e) => setRamBudget(e.target.value)}
                 className="mb-2"
             ></Form.Control>
             <Card style={{width:'100%', minHeight:"15rem"}}>
@@ -80,7 +80,7 @@ function RamList(props){
                     <ListGroup variant="flush">
                        { Object.keys(selectedRam).map(key => {
                            return(
-                           <ListGroup.Item><h5>{key}:</h5> {selectRam[key]} </ListGroup.Item>
+                           <ListGroup.Item><h5>{key}:</h5> {selectedRam[key]} </ListGroup.Item>
                            )
                        })    
                        }

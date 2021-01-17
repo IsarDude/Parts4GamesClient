@@ -9,8 +9,8 @@ function GameList(props){
     const[gameList, setGameList] = useState([]);
     const[gameName, setGameName] = useState();
     const[selectedGame, setSelectedGame]= useState({});
-    const[gameInfoDetailMin, setGameInfoDetailMin] = useState();
-    const[gameInfoDetailRec, setGameInfoDetailRec] = useState();
+    const[gameInfoDetailMin, setGameInfoDetailMin] = useState("");
+    const[gameInfoDetailRec, setGameInfoDetailRec] = useState("");
     const[reccomended, setReccomended] = useState(true);
 
     
@@ -23,26 +23,27 @@ function GameList(props){
         
         
         
-          var urlRec= 'localhost:8080/Parts4Games/gameInfo/'+ game.gameId;
+          var urlRec= 'http://localhost:8080/Parts4Games/gameInfo/'+ game.gameId + "/rec";
        
-          var urlMin= 'localhost:8080/Parts4Games/gameInfo/'+ game.gameId+'/min';
+          var urlMin= 'http://localhost:8080/Parts4Games/gameInfo/'+ game.gameId+'/min';
         
         axios.get(urlRec) 
             .then(res => {
                 const gameInfo = res.data;
-                setGameInfoDetailRec(gameInfo);
+                console.log(gameInfo.hardwareRequirements);
+                setGameInfoDetailRec(gameInfo.hardwareRequirements);
             }
             );
         axios.get(urlMin)
             .then(res => {
                 const gameInfo = res.data;
-                setGameInfoDetailMin(gameInfo);
+                setGameInfoDetailMin(gameInfo.hardwareRequirements);
             })
     }
 
     function getGameList(){
         var url = 'http://localhost:8080/Parts4Games/gameList/'+ gameName; 
-        axios.get(url,{ crossDomain: false })
+        axios.get(url)
             .then(res => {
                 const gameList = res.data;
                 setGameList(gameList);
@@ -72,7 +73,7 @@ function GameList(props){
                 <ListGroup.Item><h5>Spiele</h5></ListGroup.Item>
                 {gameList.map((game,j) => {
                     return(
-                        <ListGroup.Item action data-key={j} onClick={selectGame}>{game.name}</ListGroup.Item>
+                        <ListGroup.Item action data-key={j} onClick={selectGame}>{game.gameName}</ListGroup.Item>
                     )
                 })}
             </ListGroup>
@@ -100,13 +101,27 @@ function GameList(props){
             <Card style={{width:'100%', minHeight:"15rem"}}>
                 <Card.Body >
                     <Card.Title>Anforgderungen</Card.Title>
-                    {reccomended ? gameInfoDetailRec : gameInfoDetailRec}
+                    {reccomended ? 
+                    <div dangerouslySetInnerHTML={{__html: gameInfoDetailRec}}></div>
+                    : <div dangerouslySetInnerHTML={{__html: gameInfoDetailMin}}></div>}
                 </Card.Body>
             </Card>
             </div>
         </div>
         </div>
-    )
+    );
+
+    function buildRequirements(rec){
+        var map = new Map();
+       if(Object.keys(rec).length > 0){
+        var arr = Object.entries(rec);
+        map = arr.map(entrie =>{
+            return (entrie.hardwareRequirement);
+        });
+        return map;
+       }
+       
+    }
 }
 
 export default GameList;

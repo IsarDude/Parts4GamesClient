@@ -8,7 +8,17 @@ import ConfigList from '../components/ConfigList';
 function PartsForGames(props){
     
     const { setAuthTokens } = UseAuth();
-    const [newRamToAdd, setNewRamToAdd] = useState();
+    const [newRamToAdd, setNewRamToAdd] = useState({});
+    const [ramChanged,setRamChanged] = useState(false);
+
+    function addRamToConfigList(aRam){
+        setNewRamToAdd(aRam);
+        setRamChanged(true);
+    }
+
+    function notifyRamCreated(){
+        setRamChanged(false);
+    }
 
     function logOut() {
         setAuthTokens();
@@ -17,9 +27,9 @@ function PartsForGames(props){
         <div>
         <div className="d-flex justify-content-between m-4">
             <GameList />
-            <RamList  addRam ={(aRam) => this.ConfigList.addRam(aRam)}/>
+            <RamList  addRam ={addRamToConfigList}/>
         </div>
-             <ConfigList ref ={instance => {this.ConfigList= instance;}} />
+             <ConfigList newRam = {newRamToAdd} ramChanged={ramChanged} notifyParent={notifyRamCreated}/>
         </div>
     );
 
