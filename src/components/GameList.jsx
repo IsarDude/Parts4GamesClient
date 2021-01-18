@@ -93,6 +93,7 @@ function GameList(props){
                             label="Reccomended Requirements"
                             name="requirements"
                             id="recReq"
+                            checked={reccomended}
                             onClick = {() => setReccomended(true)}
                         />
                     </Form.Group>

@@ -124,6 +124,7 @@ function ConfigList(props){
     var map = buildConfig();
     return(
         <div className="ml-2 mr-2">
+        <h3 className="mt-2 mb-2">Manage Configurations</h3>
             {map}
         <Button variant="primary" onClick= {createNewConfig} className="mt-2 mr-2">Add Config</Button>
         <Button variant="secondary" onClick={deleteConfig} className="mt-2">Delete</Button>
