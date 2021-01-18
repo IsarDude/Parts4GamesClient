@@ -53,7 +53,7 @@ function GameList(props){
 
     return(
         <div style={{width:"45%"}}>
-            
+            <h3 className="mt-2 mb-2">Search for a Game</h3>
             <InputGroup className="mb-3">
                 <FormControl
                 placeholder="Search for a Game"

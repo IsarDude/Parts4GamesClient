@@ -106,12 +106,12 @@ function ConfigList(props){
        var map =  configListing.map((config, k ) => {
         var ramRepresentation = new Map();
         if('selectedRAM' in config){
-            ramRepresentation.set(0,ram(config.selectedRAM));
+            ramRepresentation.set(ram(config.selectedRAM));
         }
         
 
         return(
-            <CardDeck data-key = {k}  style={{width:"100%", minHeight:"100px"}} className="ml-2">
+            <CardDeck data-key = {k}  style={{width:"100%", minHeight:"100px"}} className="ml-2 mr-2">
                     
                     <Card.Header style={{width: "100%"}}>Config {k}</Card.Header>
                     {ramRepresentation}
@@ -123,10 +123,10 @@ function ConfigList(props){
     }
     var map = buildConfig();
     return(
-        <div className="ml-2">
+        <div className="ml-2 mr-2">
             {map}
-        <Button variant="primary" onClick= {createNewConfig}>Add Config</Button>
-        <Button variant="secondary" onClick={deleteConfig}>Delete</Button>
+        <Button variant="primary" onClick= {createNewConfig} className="mt-2 mr-2">Add Config</Button>
+        <Button variant="secondary" onClick={deleteConfig} className="mt-2">Delete</Button>
         </div>
 
     );

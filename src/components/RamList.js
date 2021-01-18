@@ -28,11 +28,12 @@ function RamList(props){
 
     return(
         <div style={{width:"45%"}}>
-            
+            <h3 className="mt-2 mb-2">Search for a RAM</h3>
             <InputGroup className="mb-3">
                 <FormControl
-                placeholder="Search for a RAM"
-                aria-label="Search for a RAM"
+                type = "number"
+                placeholder="Type in RAM-Capacity"
+                aria-label="Type in RAM-Capacity"
                 aria-describedby="basic-addon2"
                 onChange={function func(e){
                     setKeyword(e.target.value);
