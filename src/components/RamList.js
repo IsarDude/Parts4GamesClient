@@ -19,7 +19,7 @@ function RamList(props){
     
     function getRamList(){
         var url = 'http://localhost:8080/Parts4Games/ramList'; 
-        axios.get(url, {params: {ramCapacity: keyword, budget: ramBudget }})
+        axios.get(url, {params: {ramCapacity: keyword, ramType:"" , brandName: "", busSpeed: "", budget: ramBudget}})
             .then(res => {
                 setRamList(res.data);
             }
